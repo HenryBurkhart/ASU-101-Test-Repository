@@ -1,0 +1,68 @@
+/* This program prompts the user to enter a word to find out if it is a palindrome.
+
+   It also contains a method which returns a boolean value based on whether the 
+   
+   entered word is a palindrome. The program continues forever until the user 
+   
+   tells it to stop. It is case sensitive, meaning that while kayak would be 
+   
+   recognized as a palindrome, Kayak would not be. It also removes all spaces
+   
+   from the entered word before checking if it is a palindrome. */
+   
+import java.util.Scanner;
+
+public class Main {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      String word;
+      System.out.print("Enter a word to find out if it is a palindrome: ");
+      
+      // Infinite while loop, main loop of the program
+      while (1 == 1) {
+         
+      word = scnr.nextLine();
+      System.out.print("\n");
+         
+         // Checks if the user entered the loop breaking character
+         if ((word.equals("Q")) || (word.equals("q"))) {
+            break;
+         }
+         
+      checkPalindrome(word);
+      System.out.println(" Enter another word or enter Q to quit.\n");
+      }
+   }
+   
+   // Checks if a word is a palindrome and returns true if it is and false if it is not
+   public static boolean checkPalindrome(String word) {
+      word = removeSpaces(word);
+      
+      // Checks if the word's characters are equal, starting at the outer characters and working inward
+      for (int i = 0; i < word.length() - 1; ++i) {
+         if ((word.charAt(i)) != (word.charAt((word.length() - 1) - i))) {
+            System.out.print(word + " is not a palindrome.");
+            return false;
+         } else {
+            continue;
+         }
+      }
+      System.out.print(word + " is a palindrome.");
+      return true;
+   }
+   
+   // Removes all spaces from a String
+   public static String removeSpaces(String word) {
+      
+      // Checks for spaces and removes them by adding two substrings that exclude the space
+      for (int i = 0; i < word.length() - 1; ++i) {
+         if (word.charAt(i) == ' ') {
+            word = word.substring(0, word.indexOf(' ')) + word.substring(word.indexOf(' ') + 1);
+            --i;
+         } else {
+            continue;
+         }
+      }
+      return word;
+   }
+}
